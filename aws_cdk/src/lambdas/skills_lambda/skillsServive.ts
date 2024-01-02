@@ -1,9 +1,12 @@
-import { DynamoDBClient, PutItemCommand } from '@aws-sdk/client-dynamodb';
-import { marshall } from '@aws-sdk/util-dynamodb';
+import {
+  DynamoDBClient,
+  PutItemCommand,
+  ScanCommand,
+} from '@aws-sdk/client-dynamodb';
+import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { Article, Job, Profile, Skill, skillType } from './model/models';
 import { HTTP_CODE, jsonApiProxyResultResponse } from '../../util/util';
-import { ImagePullPolicy } from 'aws-cdk-lib/aws-batch';
 import { randomUUID } from 'crypto';
 const client = new DynamoDBClient({});
 const table = process.env.TABLE_NAME;
@@ -11,6 +14,25 @@ export class SkillsService {
   private event: APIGatewayProxyEvent;
   constructor(event: APIGatewayProxyEvent) {
     this.event = event;
+  }
+
+  public async get(): Promise<APIGatewayProxyResult> {
+    try {
+      const response = await client.send(
+        new ScanCommand({
+          TableName: table,
+        })
+      );
+      return jsonApiProxyResultResponse(HTTP_CODE.OK, {
+        message: true,
+        body: response.Items?.map((item) => unmarshall(item)),
+      });
+    } catch (err: any) {
+      return jsonApiProxyResultResponse(HTTP_CODE.ERROR, {
+        message: false,
+        body: err.message,
+      });
+    }
   }
 
   public async post(): Promise<APIGatewayProxyResult> {

@@ -14,10 +14,7 @@ export const handler = async (
   const skillService = new SkillsService(event);
   switch (event.httpMethod) {
     case HTTP_METHOD.GET:
-      return jsonApiProxyResultResponse(HTTP_CODE.OK, {
-        message: true,
-        body: 'success',
-      });
+      return await skillService.get();
     case HTTP_METHOD.POST:
       return await skillService.post();
     default:
