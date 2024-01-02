@@ -6,7 +6,7 @@ import { HTTP_CODE, jsonApiProxyResultResponse } from '../../util/util';
 import { ImagePullPolicy } from 'aws-cdk-lib/aws-batch';
 import { randomUUID } from 'crypto';
 const client = new DynamoDBClient({});
-
+const table = process.env.TABLE_NAME;
 export class SkillsService {
   private event: APIGatewayProxyEvent;
   constructor(event: APIGatewayProxyEvent) {
@@ -31,6 +31,8 @@ export class SkillsService {
           return this.addProfile(inputData);
         case skillType.JOB:
           return this.addJob(inputData);
+        case skillType.ARTICLE:
+          return this.addArticle(inputData);
         default:
           return this.noSkillType();
       }
@@ -40,6 +42,10 @@ export class SkillsService {
         body: err.message,
       });
     }
+  }
+
+  private async addArticle(inputData: Article): Promise<APIGatewayProxyResult> {
+    return await this.putItem(inputData);
   }
 
   private async addSkill(inputData: Skill): Promise<APIGatewayProxyResult> {
@@ -60,7 +66,7 @@ export class SkillsService {
     try {
       const result = await client.send(
         new PutItemCommand({
-          TableName: 'emiskillstable',
+          TableName: table,
           Item: marshall(inputData, {
             convertClassInstanceToMap: true,
           }),

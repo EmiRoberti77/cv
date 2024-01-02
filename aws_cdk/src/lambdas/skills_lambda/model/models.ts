@@ -40,4 +40,5 @@ export interface Article extends base {
   url: string;
   publication: string;
   date: string;
+  title: string;
 }
