@@ -1,17 +1,26 @@
+import axios from 'axios';
+import { count } from 'console';
+
 export class SkillServive {
+  private static count = 0;
   private apiUrl: string;
   constructor() {
-    this.apiUrl = process.env.API_URL as string;
+    this.apiUrl =
+      'https://p4u5g8kbz5.execute-api.us-east-1.amazonaws.com/prod/skills';
   }
 
-  public async fetchSkills(): Promise<any> {
-    try {
-      const response = await fetch(this.apiUrl, {
-        method: 'GET',
-      });
-      return response.json();
-    } catch (err: any) {
-      throw new Error(err.message);
-    }
+  public fetchSkills() {
+    axios
+      .get(this.apiUrl)
+      .then((res) => res.data)
+      .catch((err) => err.message);
+  }
+
+  public async asyncFetchSkills() {
+    console.log('api', this.apiUrl);
+    SkillServive.count += 1;
+    console.log('asyncFetchSkills', SkillServive.count);
+    const response = await axios.get(this.apiUrl);
+    return response.data;
   }
 }
