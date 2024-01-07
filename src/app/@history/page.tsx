@@ -1,5 +1,6 @@
 import { Job } from '@/API/models/models';
 import { SkillServive } from '@/API/skillsService';
+import JobCard from '@/components/JobCard';
 import { useQuery } from '@tanstack/react-query';
 const api = new SkillServive();
 const jobFiler: string = 'job';
@@ -39,7 +40,7 @@ export default function History() {
         <div>
           {jobList.map((job: Job) => {
             if (job.type === jobFiler) {
-              return <div key={job.id}>{job.company}</div>;
+              return <JobCard job={job} key={job.id} />;
             }
           })}
         </div>

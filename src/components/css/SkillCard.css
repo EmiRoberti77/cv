@@ -1,0 +1,20 @@
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  width: 300px; /* Adjust width as needed */
+}
+
+.card-header h2 {
+  margin: 0;
+}
+
+.card-body p {
+  margin: 10px 0;
+}
+
+.card-footer {
+  text-align: right;
+  font-size: 0.8em;
+}

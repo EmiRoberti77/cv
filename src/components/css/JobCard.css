@@ -1,0 +1,25 @@
+/* Add this to your CSS file */
+.job-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px;
+  width: 300px; /* Adjust width as needed */
+}
+
+.job-header h2 {
+  margin: 0;
+}
+
+.job-header a {
+  color: #007bff; /* Adjust link color as needed */
+}
+
+.job-body p {
+  margin: 10px 0;
+}
+
+.job-footer {
+  text-align: right;
+  font-size: 0.8em;
+}

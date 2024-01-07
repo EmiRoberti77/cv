@@ -3,6 +3,7 @@ import { SkillServive } from '@/API/skillsService';
 import Loading from '@/components/Loading';
 import Error from '@/components/Error';
 import { useQuery } from '@tanstack/react-query';
+import SkillCard from '@/components/SkillCard';
 const skillFilter: string = 'skill';
 const api = new SkillServive();
 
@@ -36,7 +37,7 @@ export default function Skills() {
         <div>
           {skillList.map((skill: Skill) => {
             if (skill.type === skillFilter)
-              return <div key={skill.id}>{skill.skill_name}</div>;
+              return <SkillCard skill={skill} key={skill.id} />;
             else return null;
           })}
         </div>
