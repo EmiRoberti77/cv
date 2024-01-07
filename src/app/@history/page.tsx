@@ -35,12 +35,18 @@ export default function History() {
   if (isSuccess) {
     const jobList = jobData.body;
     return (
-      <div className="h-96 flex-1 rounded-2xl bg-blue-800 p-10 text-white">
+      <div className="flex-1 rounded-2xl bg-blue-800 p-10 text-white">
         <h1>My jobs</h1>
+        <br />
         <div>
           {jobList.map((job: Job) => {
             if (job.type === jobFiler) {
-              return <JobCard job={job} key={job.id} />;
+              return (
+                <div>
+                  <JobCard job={job} key={job.id} />
+                  <br />
+                </div>
+              );
             }
           })}
         </div>
@@ -49,7 +55,7 @@ export default function History() {
   }
 
   return (
-    <div className="h-96 flex-1 rounded-2xl bg-pink-800 p-10 text-white">
+    <div className="flex-1 rounded-2xl bg-pink-800 p-10 text-white">
       <h1 className="text-3x1 font-bold">My History</h1>
     </div>
   );

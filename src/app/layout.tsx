@@ -4,9 +4,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import './globals.css';
 import Skills from './@skills/page';
 import History from './@history/page';
+import Profile from './@profile/page';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -32,10 +33,19 @@ export default function RootLayout({
   const queryClient = new QueryClient();
   return (
     <html>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        ></link>
+      </head>
       <body>
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
-          <section className="py-6">{children}</section>
+          <section className="py-4">{children}</section>
+          <section className="py-6">
+            <Profile />
+          </section>
           <section className="flex gap-6">
             <Skills />
             <History />

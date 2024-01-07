@@ -9,16 +9,22 @@ interface SkillCardProps {
 const SkillCard: React.FC<SkillCardProps> = ({ skill }) => {
   return (
     <div className="card">
+      <span>{skill.date}</span>
       <div className="card-header">
-        <h2>{skill.skill_name}</h2>
-        <span>{skill.date}</span>
+        <p>{skill.description}</p>
+        <br />
       </div>
       <div className="card-body">
-        <p>{skill.description}</p>
-        <div>Confidence: {skill.confidence}</div>
-      </div>
-      <div className="card-footer">
-        <small>Created at: {skill.createdAt}</small>
+        <h3>{skill.skill_name}</h3>
+        <br />
+        <div>
+          Confidence:
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+          <i className="fas fa-star"></i>
+        </div>
       </div>
     </div>
   );

@@ -1,14 +1,16 @@
-import { Skill } from '@/API/models/models';
-import { SkillServive } from '@/API/skillsService';
-import Loading from '@/components/Loading';
-import Error from '@/components/Error';
+import { Profile as Prof } from '@/API/models/models';
 import { useQuery } from '@tanstack/react-query';
-import SkillCard from '@/components/SkillCard';
-const skillFilter: string = 'skill';
+import { SkillServive } from '@/API/skillsService';
 const api = new SkillServive();
+const profileFilter = 'profile';
 
-export default function Skills() {
-  const { data, isError, isLoading, isSuccess } = useQuery<any>({
+export default function Profile() {
+  const {
+    data: profileData,
+    isLoading,
+    isError,
+    isSuccess,
+  } = useQuery<any>({
     queryKey: ['skills'],
     queryFn: () => api.asyncFetchSkills(),
   });
@@ -30,15 +32,14 @@ export default function Skills() {
   }
 
   if (isSuccess) {
-    const skillList = data.body;
+    const profiles = profileData.body;
     return (
       <div className="flex-1 rounded-2xl bg-blue-800 p-10 text-white">
-        <h1>My Skills</h1>
-        <br />
+        <h1>My Profile</h1>
         <div>
-          {skillList.map((skill: Skill) => {
-            if (skill.type === skillFilter)
-              return <SkillCard skill={skill} key={skill.id} />;
+          {profiles.map((profile: Prof) => {
+            if (profile.type === profileFilter)
+              return <div key={profile.id}>{profile.description}</div>;
             else return null;
           })}
         </div>

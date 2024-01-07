@@ -23,3 +23,9 @@
   text-align: right;
   font-size: 0.8em;
 }
+
+.job-details-container {
+  max-height: 100px; /* Adjust based on your needs */
+  overflow-y: auto; /* Enables vertical scrolling */
+  padding: 10px; /* Optional: for spacing inside the scrollable area */
+}
