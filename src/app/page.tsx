@@ -1,9 +1,9 @@
 'use client';
 import { Skill } from '@/API/models/models';
-import { SkillServive } from '@/API/skillsService';
+import { SkillService } from '@/API/skillsService';
 import { useQuery } from '@tanstack/react-query';
 const api_url = process.env.NEXT_PUBLIC_SKILL_API as string;
-const api = new SkillServive();
+const api = new SkillService();
 
 export default function Home() {
   console.log('api_url', api_url);

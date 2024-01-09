@@ -1,8 +1,8 @@
 import { Job } from '@/API/models/models';
-import { SkillServive } from '@/API/skillsService';
+import { SkillService } from '@/API/skillsService';
 import JobCard from '@/components/JobCard';
 import { useQuery } from '@tanstack/react-query';
-const api = new SkillServive();
+const api = new SkillService();
 const jobFiler: string = 'job';
 
 export default function History() {

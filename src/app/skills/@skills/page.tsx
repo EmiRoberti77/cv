@@ -1,11 +1,11 @@
 import { Skill } from '@/API/models/models';
-import { SkillServive } from '@/API/skillsService';
+import { SkillService } from '@/API/skillsService';
 import Loading from '@/components/Loading';
 import Error from '@/components/Error';
 import { useQuery } from '@tanstack/react-query';
 import SkillCard from '@/components/SkillCard';
 const skillFilter: string = 'skill';
-const api = new SkillServive();
+const api = new SkillService();
 
 export default function Skills() {
   const { data, isError, isLoading, isSuccess } = useQuery<any>({

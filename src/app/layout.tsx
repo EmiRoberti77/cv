@@ -4,10 +4,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import Skills from './@skills/page';
-import History from './@history/page';
-import Profile from './@profile/page';
 import './globals.css';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,17 +17,11 @@ const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-  skills,
-  history,
 }: {
   children: React.ReactNode;
-  skills: React.ReactNode;
-  history: React.ReactNode;
 }) {
   const props = {
     children,
-    skills,
-    history,
   };
   const queryClient = new QueryClient();
   return (
@@ -40,17 +33,12 @@ export default function RootLayout({
         ></link>
       </head>
       <body>
+        <Header />
         <QueryClientProvider client={queryClient}>
           <ReactQueryDevtools initialIsOpen={false} />
-          <section className="py-4">{children}</section>
-          <section className="py-6">
-            <Profile />
-          </section>
-          <section className="flex gap-6">
-            <Skills />
-            <History />
-          </section>
+          {children}
         </QueryClientProvider>
+        <Footer />
       </body>
     </html>
   );

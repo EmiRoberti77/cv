@@ -1,7 +1,7 @@
 import { Profile as Prof } from '@/API/models/models';
 import { useQuery } from '@tanstack/react-query';
-import { SkillServive } from '@/API/skillsService';
-const api = new SkillServive();
+import { SkillService } from '@/API/skillsService';
+const api = new SkillService();
 const profileFilter = 'profile';
 
 export default function Profile() {
@@ -18,7 +18,7 @@ export default function Profile() {
   if (isLoading) {
     return (
       <div className="h-96 flex-1 rounded-2xl bg-green-800 p-10 text-white">
-        <h1 className="text-3x1 font-bold">loading .. </h1>
+        <h1 className="text-3x1 font-bold">loading ..</h1>
       </div>
     );
   }
