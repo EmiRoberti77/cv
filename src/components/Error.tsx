@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { FC, ReactNode } from 'react';
 
-const Error = () => {
-  return <div>Error</div>;
+interface ErrorProps {
+  children: ReactNode;
+}
+
+const Error: FC<ErrorProps> = ({ children }) => {
+  return <div>{children}</div>;
 };
 
 export default Error;
